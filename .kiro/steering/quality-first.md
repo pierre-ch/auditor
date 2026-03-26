@@ -34,7 +34,7 @@ L'agent unique `a11y-auditor` DOIT, pour chaque phase :
 
 - Le format JSON de sortie de la phase scan DOIT contenir les 10 sections de base obligatoires (+ sections dynamiques conditionnelles en mode URL)
 - Le format intermédiaire normalisé de la phase analyse IA DOIT contenir `criteres_rgaa_statuts` avec exactement 106 entrées
-- Le `grille-instructions.json` de la phase rapports DOIT être validé avant appel au script `generate-xlsx.mjs`
+- Le `grille-instructions.json` de la phase rapports DOIT être validé par `node scripts/validate-grille.mjs` avant appel au script `generate-xlsx.mjs`
 - Toute NC dans `non_conformites` DOIT référencer un `page_id` existant dans `pages`
 
 ## Cohérence des rapports
@@ -64,12 +64,11 @@ Les deux phases de génération de rapports (MD et Excel) DOIVENT recevoir **exa
 
 - Les fichiers de référence JSON doivent avoir un header `meta` unifié (source, version, repository, url, generatedAt)
 - Les versions des référentiels sont dans `a11y-audit-assistant/scripts/references-config.json`, jamais hardcodées ailleurs
-- Le template ODS est au format ODS (pas xlsx), utilisé comme référence pour le formatage
+- Le template ODS est au format ODS (pas xlsx), utilisé uniquement comme référence visuelle pour le formatage — le script `generate-xlsx.mjs` ne le lit pas
 
 ### Tests
 
-- Les tests de schéma JSON (zod) valident les contrats entre phases
-- Les tests fast-check valident la logique déterministe de la phase analyse IA
+- Le script `validate-grille.mjs` valide le `grille-instructions.json` avant génération Excel (106 critères par page, statuts valides, NC documentées)
 - Les tests d'intégration utilisent des fixtures réalistes
 - Aucun mock ne doit masquer un bug réel
 

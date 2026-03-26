@@ -24,7 +24,8 @@ Quand l'utilisateur demande un audit d'accessibilité (URL, HTML, site, projet) 
   3. Analyse IA thématique RGAA (critère par critère, 13 thématiques)
   4. Fusion et cohérence (axe-core + IA → 106 critères validés)
   5. Rapport Markdown + Grille Excel RGAA
-- **Données en mémoire** : pas de fichiers JSON intermédiaires entre phases
+- **Données en mémoire** : pas de fichiers JSON intermédiaires entre phases (sauf si volume trop important — voir section "Stockage des données inter-phases" dans `a11y-audit-assistant/steering/a11y-auditor.md`)
+- **Fichiers de sortie** : écrits dans `<dossier-audit>/` créé en phase 1
 - **2 livrables** : rapport Markdown + grille Excel (.xlsx)
 
 ## Injection axe-core — Contournement CSP

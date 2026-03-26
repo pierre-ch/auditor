@@ -483,8 +483,7 @@ Produit par la **phase 5 (rapport + grille Excel)**, consommé par le script Nod
           "statut": "string — C | NC | NA | NT",
           "derogation": "string — N | O",
           "modifications": "string — texte libre (observations, recommandations de correction)",
-          "commentaires": "string — commentaires en cas de dérogation",
-          "non_conformites_ids": ["string — IDs des NC liées (ex: NC-005, NC-006)"]
+          "commentaires": "string — commentaires en cas de dérogation"
         }
       ]
     }
@@ -520,7 +519,12 @@ Produit par la **phase 5 (rapport + grille Excel)**, consommé par le script Nod
 - `derogation` DOIT être `N` ou `O`
 - Si `statut` = `NC`, alors `modifications` DOIT être non vide
 - Les statuts DOIVENT être cohérents avec le format intermédiaire normalisé (`conforme` → `C`, `non_conforme` → `NC`, `non_applicable` → `NA`, `revue_manuelle_necessaire` → `NT`)
-- Le `grille-instructions.json` DOIT être validé avant appel au script generate-xlsx.mjs
+- Le `grille-instructions.json` DOIT être validé par `node scripts/validate-grille.mjs <fichier>` avant appel au script generate-xlsx.mjs
+
+### Note sur le template ODS
+
+Le fichier `references/rgaa4.1.2.modele-de-grille-d-audit.ods` est une **référence visuelle uniquement**. Le script `generate-xlsx.mjs` ne le lit pas — il génère le Excel from scratch avec ExcelJS en reproduisant le formatage (colonnes, couleurs, en-têtes). Le template ODS sert de référence pour vérifier visuellement que la grille produite est conforme au modèle DINUM.
+- Le champ `non_conformites_ids` est présent dans le format intermédiaire normalisé (§2) mais PAS dans le format grille-instructions.json (§5) — le script `generate-xlsx.mjs` ne le consomme pas
 
 ## 6. Format d'entrée de l'agent
 
@@ -592,7 +596,7 @@ Produit par la **phase 5 (rapport + grille Excel)**, consommé par le script Nod
 
 ### Phase grille Excel → Script Node.js
 
-- `grille-instructions.json` DOIT être validé par un schéma zod
+- `grille-instructions.json` DOIT être validé par le script `a11y-audit-assistant/scripts/validate-grille.mjs` avant appel à `generate-xlsx.mjs`
 - Chaque page DOIT avoir 106 critères
 - Les statuts DOIVENT être `C`, `NC`, `NA` ou `NT`
 

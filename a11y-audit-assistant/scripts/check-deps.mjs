@@ -65,11 +65,26 @@ function checkRefs() {
     { path: 'references/rgaa-criteres.json', label: 'rgaa-criteres.json', key: 'topics' },
     { path: 'references/wcag-sc.json', label: 'wcag-sc.json', key: null },
     { path: 'references/aria-patterns.json', label: 'aria-patterns.json', key: null },
+    { path: 'references/mapping-rgaa-wcag-eaa.json', label: 'mapping-rgaa-wcag-eaa.json', key: null },
   ];
   return refs.map(r => {
     const json = tryJson(join(ROOT, r.path));
-    const ok = json?.meta?.version != null;
-    return { label: r.label, ok, detail: ok ? `v${json.meta.version}` : 'absent ou invalide' };
+    const hasMeta = json?.meta != null;
+    const version = json?.meta?.version ?? json?.meta?.counts?.total_rgaa;
+    const ok = hasMeta && version != null;
+    return { label: r.label, ok, detail: ok ? (json.meta.version ? `v${json.meta.version}` : `${version} critères`) : 'absent ou invalide' };
+  });
+}
+
+function checkNonJsonRefs() {
+  const files = [
+    { path: 'references/rapport-template.md', label: 'rapport-template.md' },
+    { path: 'references/thematiques-guide.md', label: 'thematiques-guide.md' },
+    { path: 'references/criteres-revue-manuelle.md', label: 'criteres-revue-manuelle.md' },
+  ];
+  return files.map(f => {
+    const ok = existsSync(join(ROOT, f.path));
+    return { label: f.label, ok, detail: ok ? 'présent' : 'absent' };
   });
 }
 
@@ -119,13 +134,18 @@ for (const r of checkRefs()) {
   if (!r.ok) hasBlock = true;
 }
 
+for (const r of checkNonJsonRefs()) {
+  line(r.ok ? SYM.ok : SYM.block, r.label, r.detail);
+  if (!r.ok) hasBlock = true;
+}
+
 const xl = checkExceljs();
 line(xl.ok ? SYM.ok : SYM.block, 'exceljs', xl.detail);
 if (!xl.ok) hasBlock = true;
 
 console.log('\n── Consentement ──');
 const ods = checkOds();
-line(ods.ok ? SYM.ok : SYM.warn, 'Template ODS', ods.ok ? 'présent' : 'absent — grille sans formatage DINUM');
+line(ods.ok ? SYM.ok : SYM.warn, 'Template ODS (référence visuelle)', ods.ok ? 'présent' : 'absent — référence formatage DINUM indisponible');
 if (!ods.ok) hasConsent = true;
 
 console.log('\n── Avertissements ──');

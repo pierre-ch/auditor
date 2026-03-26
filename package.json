@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "update-refs": "node a11y-audit-assistant/scripts/update-references.mjs",
-    "check-deps": "node a11y-audit-assistant/scripts/check-deps.mjs"
+    "check-deps": "node a11y-audit-assistant/scripts/check-deps.mjs",
+    "validate-grille": "node a11y-audit-assistant/scripts/validate-grille.mjs"
   },
   "dependencies": {
     "exceljs": "^4.4.0"

@@ -39,11 +39,13 @@ a11y-audit-assistant/
 │   ├── eaa-references.json           ← Directive 2019/882 (articles + annexes)
 │   ├── aria-patterns.json            ← 30 patterns APG (keyboard + ARIA props)
 │   ├── mapping-rgaa-wcag-eaa.json    ← Table croisée RGAA ↔ WCAG ↔ EAA
+│   ├── thematiques-guide.md          ← Guide détaillé par thématique (phase 3)
 │   ├── criteres-revue-manuelle.md    ← Guide de revue manuelle
 │   ├── rapport-template.md           ← Template du rapport Markdown
 │   └── rgaa4.1.2.modele-de-grille-d-audit.ods
 └── scripts/
     ├── generate-xlsx.mjs             ← Génération Excel
+    ├── validate-grille.mjs           ← Validation grille-instructions.json
     ├── check-deps.mjs                ← Vérification prérequis
     ├── update-references.mjs         ← Téléchargement références officielles
     └── references-config.json        ← Config sources + versions

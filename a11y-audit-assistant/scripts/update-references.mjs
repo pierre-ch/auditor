@@ -318,6 +318,111 @@ async function downloadARIA() {
   writeRef("aria-patterns.json", c, patterns);
 }
 
+// ─── 4. Mapping RGAA ↔ WCAG ↔ EAA ──────────────────────────────────────────
+
+/**
+ * Regenerates mapping-rgaa-wcag-eaa.json from the freshly downloaded
+ * rgaa-criteres.json, wcag-sc.json and eaa-references.json.
+ */
+function generateMapping() {
+  console.log(`\n📥 Mapping RGAA ↔ WCAG ↔ EAA`);
+
+  const rgaaRaw = JSON.parse(readFileSync(join(OUT, "rgaa-criteres.json"), "utf-8"));
+  const wcagRaw = JSON.parse(readFileSync(join(OUT, "wcag-sc.json"), "utf-8"));
+
+  let eaaData = null;
+  try {
+    eaaData = JSON.parse(readFileSync(join(OUT, "eaa-references.json"), "utf-8"));
+  } catch {
+    console.warn("  ⚠ eaa-references.json absent — mapping EAA omis");
+  }
+
+  // Build WCAG lookup: number → SC object
+  const wcagByNumber = {};
+  for (const sc of wcagRaw.data) {
+    if (sc.number) wcagByNumber[sc.number] = sc;
+  }
+
+  // Build EAA annexes lookup from eaa-references.json
+  const eaaAnnexes = [];
+  if (eaaData?.data?.annexes) {
+    for (const annex of eaaData.data.annexes) {
+      eaaAnnexes.push(annex);
+    }
+  }
+
+  // RGAA → WCAG mapping based on rgaa-criteres.json references
+  const thematiques = rgaaRaw.data?.topics || rgaaRaw.data;
+  const mapping = [];
+
+  const themaNames = {
+    1: "Images", 2: "Cadres", 3: "Couleurs", 4: "Multimédia",
+    5: "Tableaux", 6: "Liens", 7: "Scripts", 8: "Éléments obligatoires",
+    9: "Structuration", 10: "Présentation", 11: "Formulaires",
+    12: "Navigation", 13: "Consultation"
+  };
+
+  for (const topic of (Array.isArray(thematiques) ? thematiques : Object.values(thematiques))) {
+    const topicNumber = topic.number || topic.topic;
+    const themaName = themaNames[topicNumber] || `Thématique ${topicNumber}`;
+    const criteria = topic.criteria || topic.criteres || [];
+
+    for (const crit of criteria) {
+      const critNumber = crit.criterium?.number || crit.number;
+      const rgaaId = `${topicNumber}.${critNumber}`;
+
+      // Extract WCAG references from criterion
+      const wcagRefs = [];
+      const rawRefs = crit.criterium?.references || crit.references || [];
+      const wcagRefList = Array.isArray(rawRefs) ? rawRefs : (rawRefs.wcag || []);
+
+      for (const ref of wcagRefList) {
+        const num = typeof ref === "string" ? ref : ref.number || ref.criterion;
+        if (num && wcagByNumber[num]) {
+          wcagRefs.push({
+            number: num,
+            title: wcagByNumber[num].title,
+            level: wcagByNumber[num].level,
+          });
+        } else if (num) {
+          wcagRefs.push({ number: num, title: num, level: "?" });
+        }
+      }
+
+      // EAA: all WCAG 2.1 A/AA criteria are covered by EAA via EN 301 549
+      const eaaApplicable = wcagRefs.some(
+        (w) => ["A", "AA"].includes(w.level) && !w.number.startsWith("2.4.11")
+      );
+
+      mapping.push({
+        rgaa: rgaaId,
+        thematique: themaName,
+        wcag: wcagRefs,
+        eaa: eaaApplicable ? ["annexe-I-section-III-b"] : [],
+        eaa_applicable: eaaApplicable,
+      });
+    }
+  }
+
+  const meta = {
+    description: "Table de correspondance RGAA 4.1.2 ↔ WCAG 2.2 ↔ EAA 2019/882",
+    note: "L EAA exige la conformité avec EN 301 549 qui référence WCAG 2.1 AA. Tous les critères RGAA correspondant à des SC WCAG 2.1 niveau A ou AA sont donc couverts par l EAA pour les services web.",
+    generatedAt: new Date().toISOString(),
+    counts: {
+      total_rgaa: mapping.length,
+      with_wcag: mapping.filter((m) => m.wcag.length > 0).length,
+      with_eaa: mapping.filter((m) => m.eaa_applicable).length,
+    },
+  };
+
+  writeFileSync(
+    join(OUT, "mapping-rgaa-wcag-eaa.json"),
+    JSON.stringify({ meta, data: mapping }, null, 2),
+    "utf-8"
+  );
+  console.log(`  ✓ ${OUT}/mapping-rgaa-wcag-eaa.json (${mapping.length} critères)`);
+}
+
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -327,6 +432,7 @@ async function main() {
   await downloadRGAA();
   await downloadWCAG();
   await downloadARIA();
+  generateMapping();
 
   console.log(`\n✅ All references updated in ${OUT}/`);
 }
