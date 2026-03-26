@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "source": "European Accessibility Act — Directive (EU) 2019/882",
+    "version": "2019/882",
+    "repository": null,
+    "url": "https://eur-lex.europa.eu/eli/dir/2019/882/oj",
+    "generatedAt": null,
+    "note": "Manually maintained. The EAA is a fixed legislative text (adopted 2019-04-17, applicable 2025-06-28). No automated update needed."
+  },
+  "data": {
+    "directive": {
+      "title": "Directive (EU) 2019/882 of the European Parliament and of the Council of 17 April 2019 on the accessibility requirements for products and services",
+      "shortTitle": "European Accessibility Act (EAA)",
+      "celex": "32019L0882",
+      "eli": "https://eur-lex.europa.eu/eli/dir/2019/882/oj",
+      "adoptedDate": "2019-04-17",
+      "applicableDate": "2025-06-28",
+      "transpositionDeadline": "2022-06-28",
+      "technicalStandard": "EN 301 549 V3.2.1 (2021-03)"
+    },
+    "articles": [
+      {
+        "id": "art-1",
+        "number": "Article 1",
+        "title": "Subject matter",
+        "summary": "Establishes common accessibility requirements for certain products and services to improve the functioning of the internal market.",
+        "relevanceWeb": false
+      },
+      {
+        "id": "art-2",
+        "number": "Article 2",
+        "title": "Scope",
+        "summary": "Defines the products and services covered, including e-commerce services, banking services, electronic communications, and access to audiovisual media services.",
+        "relevanceWeb": true,
+        "webServices": [
+          "e-commerce",
+          "consumer banking",
+          "electronic communications",
+          "audiovisual media services",
+          "e-books",
+          "transport services (websites, apps, ticketing)"
+        ]
+      },
+      {
+        "id": "art-4",
+        "number": "Article 4",
+        "title": "Accessibility requirements",
+        "summary": "Requires that products and services comply with the accessibility requirements set out in Annex I. For services, Section III of Annex I applies.",
+        "relevanceWeb": true
+      },
+      {
+        "id": "art-13",
+        "number": "Article 13",
+        "title": "Obligations of service providers",
+        "summary": "Service providers shall ensure that they design and provide services in accordance with the accessibility requirements of this Directive (Annex I, Section III).",
+        "relevanceWeb": true
+      },
+      {
+        "id": "art-14",
+        "number": "Article 14",
+        "title": "Disproportionate burden",
+        "summary": "Economic operators may claim exemption from accessibility requirements if compliance would impose a disproportionate burden, assessed per Annex VI criteria.",
+        "relevanceWeb": true
+      },
+      {
+        "id": "art-15",
+        "number": "Article 15",
+        "title": "Presumption of conformity",
+        "summary": "Products and services conforming to harmonised standards (EN 301 549) or parts thereof shall be presumed to be in conformity with the accessibility requirements covered by those standards.",
+        "relevanceWeb": true
+      }
+    ],
+
+    "annexI": {
+      "title": "Annex I — Accessibility requirements for products and services",
+      "sections": [
+        {
+          "id": "annex-I-sec-III",
+          "number": "Section III",
+          "title": "Services",
+          "summary": "Accessibility requirements applicable to all services covered by Article 2. This is the primary section relevant to web accessibility.",
+          "relevanceWeb": true,
+          "requirements": [
+            {
+              "id": "sec-III-a",
+              "letter": "(a)",
+              "title": "Information provision",
+              "description": "Service providers shall provide information about the functioning of the service and its accessibility features in accordance with Section I requirements, making it available via more than one sensory channel.",
+              "wcagMapping": ["1.1.1", "1.2.1", "1.2.2", "1.2.3", "1.2.5", "1.3.1", "1.3.2", "1.3.3", "1.4.1"]
+            },
+            {
+              "id": "sec-III-b",
+              "letter": "(b)",
+              "title": "Websites accessibility",
+              "description": "Websites, including related online applications, shall be made accessible in a consistent and adequate way for users' perception, operation and understanding, including the adaptability of content presentation and interaction, and when necessary providing an accessible electronic alternative.",
+              "wcagMapping": ["1.1.1", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.3.1", "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.4.1", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.10", "1.4.11", "1.4.12", "1.4.13", "2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.2.2", "2.3.1", "2.4.1", "2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.5.1", "2.5.2", "2.5.3", "2.5.4", "3.1.1", "3.1.2", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "4.1.1", "4.1.2", "4.1.3"]
+            },
+            {
+              "id": "sec-III-c",
+              "letter": "(c)",
+              "title": "Mobile applications accessibility",
+              "description": "Mobile-based services, including mobile applications, shall be made accessible in a consistent and adequate way for users' perception, operation and understanding.",
+              "wcagMapping": ["1.1.1", "1.3.1", "1.3.4", "1.4.3", "1.4.11", "2.1.1", "2.4.3", "2.4.7", "2.5.1", "2.5.3", "4.1.2"]
+            },
+            {
+              "id": "sec-III-d",
+              "letter": "(d)",
+              "title": "Electronic identification and security",
+              "description": "Electronic identification, security and payment methods shall be made perceivable, operable, understandable and robust.",
+              "wcagMapping": ["1.3.5", "2.1.1", "3.3.1", "3.3.2", "3.3.3", "3.3.4"]
+            },
+            {
+              "id": "sec-III-e",
+              "letter": "(e)",
+              "title": "Support services",
+              "description": "Where support services (help desks, call centres, technical support, relay services) are provided, they shall provide information on the accessibility of the service and its compatibility with assistive technologies, in accessible modes of communication.",
+              "wcagMapping": []
+            }
+          ]
+        },
+        {
+          "id": "annex-I-sec-IV",
+          "number": "Section IV",
+          "title": "Specific requirements for services",
+          "summary": "Additional requirements for specific service categories (electronic communications, audiovisual media, transport, banking, e-commerce, e-books).",
+          "relevanceWeb": true,
+          "serviceCategories": [
+            {
+              "id": "sec-IV-a",
+              "letter": "(a)",
+              "title": "Electronic communications services",
+              "description": "Real-time text, total conversation services where video is provided, emergency communications support."
+            },
+            {
+              "id": "sec-IV-b",
+              "letter": "(b)",
+              "title": "Audiovisual media services",
+              "description": "Electronic programme guides shall be perceivable, operable, understandable and robust. Audiovisual content shall be accessible."
+            },
+            {
+              "id": "sec-IV-c",
+              "letter": "(c)",
+              "title": "Air, bus, rail and waterborne passenger transport services",
+              "description": "Websites, mobile applications, electronic tickets, real-time travel information and interactive self-service terminals shall be accessible."
+            },
+            {
+              "id": "sec-IV-d",
+              "letter": "(d)",
+              "title": "Consumer banking services",
+              "description": "Identification methods, electronic signatures, security and payment services shall be perceivable, operable, understandable and robust."
+            },
+            {
+              "id": "sec-IV-e",
+              "letter": "(e)",
+              "title": "E-books and dedicated software",
+              "description": "E-books shall provide text-to-speech capability, navigation, dynamic layout, alternative descriptions, and DRM that does not block accessibility features."
+            },
+            {
+              "id": "sec-IV-f",
+              "letter": "(f)",
+              "title": "E-commerce services",
+              "description": "Identification, security and payment methods used in e-commerce shall be accessible."
+            }
+          ]
+        }
+      ]
+    },
+
+    "wcagCoverage": {
+      "description": "The EAA effectively requires WCAG 2.1 Level AA compliance for web services via EN 301 549. The following maps each WCAG 2.1 A/AA success criterion to the relevant EAA provision.",
+      "technicalStandard": "EN 301 549 V3.2.1 (2021-03)",
+      "wcagVersion": "2.1",
+      "wcagLevel": "AA",
+      "criteria": [
+        { "wcag": "1.1.1", "level": "A", "title": "Non-text Content", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.2.1", "level": "A", "title": "Audio-only and Video-only (Prerecorded)", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.2.2", "level": "A", "title": "Captions (Prerecorded)", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.2.3", "level": "A", "title": "Audio Description or Media Alternative (Prerecorded)", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.2.4", "level": "AA", "title": "Captions (Live)", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.2.5", "level": "AA", "title": "Audio Description (Prerecorded)", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.3.1", "level": "A", "title": "Info and Relationships", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.3.2", "level": "A", "title": "Meaningful Sequence", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.3.3", "level": "A", "title": "Sensory Characteristics", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.3.4", "level": "AA", "title": "Orientation", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.3.5", "level": "AA", "title": "Identify Input Purpose", "eaaRef": "Annex I, Section III (b)(d)" },
+        { "wcag": "1.4.1", "level": "A", "title": "Use of Color", "eaaRef": "Annex I, Section III (a)(b)" },
+        { "wcag": "1.4.2", "level": "A", "title": "Audio Control", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.3", "level": "AA", "title": "Contrast (Minimum)", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.4", "level": "AA", "title": "Resize Text", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.5", "level": "AA", "title": "Images of Text", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.10", "level": "AA", "title": "Reflow", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.11", "level": "AA", "title": "Non-text Contrast", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.12", "level": "AA", "title": "Text Spacing", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "1.4.13", "level": "AA", "title": "Content on Hover or Focus", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.1.1", "level": "A", "title": "Keyboard", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.1.2", "level": "A", "title": "No Keyboard Trap", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.1.4", "level": "A", "title": "Character Key Shortcuts", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.2.1", "level": "A", "title": "Timing Adjustable", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.2.2", "level": "A", "title": "Pause, Stop, Hide", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.3.1", "level": "A", "title": "Three Flashes or Below Threshold", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.1", "level": "A", "title": "Bypass Blocks", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.2", "level": "A", "title": "Page Titled", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.3", "level": "A", "title": "Focus Order", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.4", "level": "A", "title": "Link Purpose (In Context)", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.5", "level": "AA", "title": "Multiple Ways", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.6", "level": "AA", "title": "Headings and Labels", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.4.7", "level": "AA", "title": "Focus Visible", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.5.1", "level": "A", "title": "Pointer Gestures", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.5.2", "level": "A", "title": "Pointer Cancellation", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.5.3", "level": "A", "title": "Label in Name", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "2.5.4", "level": "A", "title": "Motion Actuation", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.1.1", "level": "A", "title": "Language of Page", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.1.2", "level": "AA", "title": "Language of Parts", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.2.1", "level": "A", "title": "On Focus", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.2.2", "level": "A", "title": "On Input", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.2.3", "level": "AA", "title": "Consistent Navigation", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.2.4", "level": "AA", "title": "Consistent Identification", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "3.3.1", "level": "A", "title": "Error Identification", "eaaRef": "Annex I, Section III (b)(d)" },
+        { "wcag": "3.3.2", "level": "A", "title": "Labels or Instructions", "eaaRef": "Annex I, Section III (b)(d)" },
+        { "wcag": "3.3.3", "level": "AA", "title": "Error Suggestion", "eaaRef": "Annex I, Section III (b)(d)" },
+        { "wcag": "3.3.4", "level": "AA", "title": "Error Prevention (Legal, Financial, Data)", "eaaRef": "Annex I, Section III (b)(d)" },
+        { "wcag": "4.1.1", "level": "A", "title": "Parsing", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "4.1.2", "level": "A", "title": "Name, Role, Value", "eaaRef": "Annex I, Section III (b)" },
+        { "wcag": "4.1.3", "level": "AA", "title": "Status Messages", "eaaRef": "Annex I, Section III (b)" }
+      ]
+    },
+    "annexVI": {
+      "id": "annex-VI",
+      "title": "Annex VI — Criteria for assessment of disproportionate burden",
+      "summary": "Criteria for assessing whether accessibility requirements impose a disproportionate burden: ratio of net costs of compliance to overall costs, estimated costs and benefits for the economic operator, and ratio of net costs to net turnover.",
+      "criteria": [
+        "Ratio of the net costs of compliance with the accessibility requirements to the overall costs (operating and capital expenditures) of manufacturing, distributing or importing the product or providing the service to the economic operator",
+        "Estimated costs and benefits to the economic operators, including in relation to production processes and investments, in relation to the estimated benefit for persons with disabilities, taking into account the amount and frequency of use of the specific product or service",
+        "Ratio of the net costs of compliance with the accessibility requirements to the net turnover of the economic operator"
+      ]
+    }
+  }
+}
