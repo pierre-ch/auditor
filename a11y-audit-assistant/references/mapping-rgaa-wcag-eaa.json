@@ -1,0 +1,1894 @@
+{
+  "meta": {
+    "description": "Table de correspondance RGAA 4.1.2 ↔ WCAG 2.2 ↔ EAA 2019/882",
+    "note": "L EAA exige la conformité avec EN 301 549 qui référence WCAG 2.1 AA. Tous les critères RGAA correspondant à des SC WCAG 2.1 niveau A ou AA sont donc couverts par l EAA pour les services web.",
+    "generatedAt": "2026-03-26T10:19:55.075Z",
+    "counts": {
+      "total_rgaa": 106,
+      "with_wcag": 106,
+      "with_eaa": 106
+    }
+  },
+  "data": [
+    {
+      "rgaa": "1.1",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.2",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.3",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.4",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.5",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.6",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.7",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.8",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.4.5",
+          "title": "Images of Text",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "1.9",
+      "thematique": "Images",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "2.1",
+      "thematique": "Cadres",
+      "wcag": [
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "2.2",
+      "thematique": "Cadres",
+      "wcag": [
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "3.1",
+      "thematique": "Couleurs",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "1.4.1",
+          "title": "Use of color",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "3.2",
+      "thematique": "Couleurs",
+      "wcag": [
+        {
+          "number": "1.4.3",
+          "title": "Contrast (Minimum)",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "3.3",
+      "thematique": "Couleurs",
+      "wcag": [
+        {
+          "number": "1.4.11",
+          "title": "Non-text Contrast",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.1",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.1",
+          "title": "Audio-only and Video-only (Prerecorded)",
+          "level": "A"
+        },
+        {
+          "number": "1.2.3",
+          "title": "Audio Description or Media Alternative (Prerecorded)",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.2",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.1",
+          "title": "Audio-only and Video-only (Prerecorded)",
+          "level": "A"
+        },
+        {
+          "number": "1.2.3",
+          "title": "Audio Description and Media Alternative (Prerecorded)",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.3",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.2",
+          "title": "Captions (Prerecorded)",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.4",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.2",
+          "title": "Captions (Prerecorded)",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.5",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.5",
+          "title": "Audio Description (Prerecorded)",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.6",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.2.5",
+          "title": "Audio Description (Prerecorded)",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.7",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.8",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.9",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.10",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "1.4.2",
+          "title": "Audio Control",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.11",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        },
+        {
+          "number": "2.1.2",
+          "title": "No Keyboard Trap",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.12",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        },
+        {
+          "number": "2.1.2",
+          "title": "No Keyboard Trap",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "4.13",
+      "thematique": "Multimédia",
+      "wcag": [
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.1",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.2",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.3",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.4",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.5",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.6",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.7",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "5.8",
+      "thematique": "Tableaux",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "6.1",
+      "thematique": "Liens",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "2.4.4",
+          "title": "Link Purpose (In Context)",
+          "level": "A"
+        },
+        {
+          "number": "2.5.3",
+          "title": "Label in Name",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "6.2",
+      "thematique": "Liens",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "2.4.4",
+          "title": "Link Purpose (In Context)",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "7.1",
+      "thematique": "Scripts",
+      "wcag": [
+        {
+          "number": "2.5.3",
+          "title": "Label in Name",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "7.2",
+      "thematique": "Scripts",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "7.3",
+      "thematique": "Scripts",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        },
+        {
+          "number": "2.4.7",
+          "title": "Focus Visible",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "7.4",
+      "thematique": "Scripts",
+      "wcag": [
+        {
+          "number": "3.2.1",
+          "title": "On Focus",
+          "level": "A"
+        },
+        {
+          "number": "3.2.2",
+          "title": "On Input",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "7.5",
+      "thematique": "Scripts",
+      "wcag": [
+        {
+          "number": "4.1.3",
+          "title": "Status Messages",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.1",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "4.1.1",
+          "title": "Parsing",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.2",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "4.1.1",
+          "title": "Parsing",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.3",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "3.1.1",
+          "title": "Language of Page",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.4",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "3.1.1",
+          "title": "Language of Page",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.5",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "2.4.2",
+          "title": "Page Titled",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.6",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "2.4.2",
+          "title": "Page Titled",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.7",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "3.1.2",
+          "title": "Language of Parts",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.8",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "3.1.2",
+          "title": "Language of Parts",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.9",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "8.10",
+      "thematique": "Éléments obligatoires",
+      "wcag": [
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "9.1",
+      "thematique": "Structuration de l'information",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "2.4.1",
+          "title": "Bypass Blocks",
+          "level": "A"
+        },
+        {
+          "number": "2.4.6",
+          "title": "Headings and Labels",
+          "level": "AA"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "9.2",
+      "thematique": "Structuration de l'information",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "9.3",
+      "thematique": "Structuration de l'information",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "9.4",
+      "thematique": "Structuration de l'information",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.1",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.2",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.3",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        },
+        {
+          "number": "2.4.3",
+          "title": "Focus Order",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.4",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.4",
+          "title": "Resize Text",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.5",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.3",
+          "title": "Contrast (Minimum)",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.6",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.1",
+          "title": "Use of Color",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.7",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.1",
+          "title": "Use of Color",
+          "level": "A"
+        },
+        {
+          "number": "2.4.7",
+          "title": "Focus Visible",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.8",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.9",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.3.3",
+          "title": "Sensory Characteristics",
+          "level": "A"
+        },
+        {
+          "number": "1.4.1",
+          "title": "Use of Color",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.10",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.3.3",
+          "title": "Sensory Characteristics",
+          "level": "A"
+        },
+        {
+          "number": "1.4.1",
+          "title": "Use of Color",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.11",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.10",
+          "title": "Reflow",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.12",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.12",
+          "title": "Text Spacing",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.13",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "1.4.13",
+          "title": "Content on Hover or Focus",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "10.14",
+      "thematique": "Présentation de l'information",
+      "wcag": [
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.1",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "2.4.6",
+          "title": "Headings and Labels",
+          "level": "AA"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.2",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "2.4.6",
+          "title": "Headings and Labels",
+          "level": "AA"
+        },
+        {
+          "number": "2.5.3",
+          "title": "Label in Name",
+          "level": "A"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.3",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "3.2.4",
+          "title": "Consistent Identification",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.4",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.5",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.6",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.7",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.8",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.9",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "2.5.3",
+          "title": "Label in Name",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.10",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "3.3.1",
+          "title": "Error Identification",
+          "level": "A"
+        },
+        {
+          "number": "3.3.2",
+          "title": "Labels or Instructions",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.11",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "3.3.3",
+          "title": "Error Suggestion",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.12",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "3.3.4",
+          "title": "Error Prevention (Legal, Financial, Data)",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "11.13",
+      "thematique": "Formulaires",
+      "wcag": [
+        {
+          "number": "1.3.5",
+          "title": "Identify Input Purpose",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.1",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.4.5",
+          "title": "Multiple Ways",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.2",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "3.2.3",
+          "title": "Consistent Navigation",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.3",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.4.5",
+          "title": "Multiple Ways",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.4",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.4.5",
+          "title": "Multiple Ways",
+          "level": "AA"
+        },
+        {
+          "number": "3.2.3",
+          "title": "Consistent Navigation",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.5",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "3.2.3",
+          "title": "Consistent Navigation",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.6",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "2.4.1",
+          "title": "Bypass Blocks",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.7",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.4.1",
+          "title": "Bypass Blocks",
+          "level": "A"
+        },
+        {
+          "number": "2.4.3",
+          "title": "Focus Order",
+          "level": "A"
+        },
+        {
+          "number": "3.2.3",
+          "title": "Consistent Navigation",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.8",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.4.3",
+          "title": "Focus Order",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.9",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        },
+        {
+          "number": "2.1.2",
+          "title": "No Keyboard Trap",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.10",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.1.4",
+          "title": "Character Key Shortcuts",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "12.11",
+      "thematique": "Navigation",
+      "wcag": [
+        {
+          "number": "2.1.1",
+          "title": "Keyboard",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.1",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.2.1",
+          "title": "Timing adjustable",
+          "level": "A"
+        },
+        {
+          "number": "2.2.2",
+          "title": "Pause, Stop, Hide",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.2",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "3.2.1",
+          "title": "On focus",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.3",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        },
+        {
+          "number": "2.4.1",
+          "title": "Bypass Blocks",
+          "level": "A"
+        },
+        {
+          "number": "2.4.3",
+          "title": "Focus Order",
+          "level": "A"
+        },
+        {
+          "number": "3.1.1",
+          "title": "Language of Page",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.4",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        },
+        {
+          "number": "1.3.1",
+          "title": "Info and Relationships",
+          "level": "A"
+        },
+        {
+          "number": "1.3.2",
+          "title": "Meaningful Sequence",
+          "level": "A"
+        },
+        {
+          "number": "2.4.1",
+          "title": "Bypass Blocks",
+          "level": "A"
+        },
+        {
+          "number": "2.4.3",
+          "title": "Focus Order",
+          "level": "A"
+        },
+        {
+          "number": "3.1.1",
+          "title": "Language of Page",
+          "level": "A"
+        },
+        {
+          "number": "4.1.2",
+          "title": "Name, Role, Value",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.5",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.6",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "1.1.1",
+          "title": "Non-text Content",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.7",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.3.1",
+          "title": "Three Flashes or Below Threshold",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.8",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.2.1",
+          "title": "Timing Adjustable",
+          "level": "A"
+        },
+        {
+          "number": "2.2.2",
+          "title": "Pause, Stop, Hide",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.9",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "1.3.4",
+          "title": "Orientation",
+          "level": "AA"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.10",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.5.1",
+          "title": "Pointer Gestures",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.11",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.5.2",
+          "title": "Pointer Cancellation",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    },
+    {
+      "rgaa": "13.12",
+      "thematique": "Consultation",
+      "wcag": [
+        {
+          "number": "2.5.4",
+          "title": "Motion Actuation",
+          "level": "A"
+        }
+      ],
+      "eaa": [
+        "annexe-I-section-III-b"
+      ],
+      "eaa_applicable": true
+    }
+  ]
+}
