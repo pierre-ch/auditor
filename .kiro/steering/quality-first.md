@@ -33,8 +33,8 @@ L'agent unique `a11y-auditor` DOIT, pour chaque phase :
 ### Validation entrées/sorties
 
 - Le format JSON de sortie de la phase scan DOIT contenir les 10 sections de base obligatoires (+ sections dynamiques conditionnelles en mode URL)
-- Le format intermédiaire normalisé de la phase mapping DOIT contenir `criteres_rgaa_statuts` avec exactement 106 entrées
-- Le `grille-instructions.json` de la phase grille Excel DOIT être validé avant appel au script `generate-xlsx.mjs`
+- Le format intermédiaire normalisé de la phase analyse IA DOIT contenir `criteres_rgaa_statuts` avec exactement 106 entrées
+- Le `grille-instructions.json` de la phase rapports DOIT être validé avant appel au script `generate-xlsx.mjs`
 - Toute NC dans `non_conformites` DOIT référencer un `page_id` existant dans `pages`
 
 ## Cohérence des rapports
@@ -69,7 +69,7 @@ Les deux phases de génération de rapports (MD et Excel) DOIVENT recevoir **exa
 ### Tests
 
 - Les tests de schéma JSON (zod) valident les contrats entre phases
-- Les tests fast-check valident la logique déterministe de la phase mapping
+- Les tests fast-check valident la logique déterministe de la phase analyse IA
 - Les tests d'intégration utilisent des fixtures réalistes
 - Aucun mock ne doit masquer un bug réel
 

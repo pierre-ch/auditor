@@ -89,14 +89,13 @@ Vérification cohérence MD ↔ Excel critère par critère avant livraison.
 | Playwright MCP unique | axe-core injecté via `browser_evaluate` ou `page.addScriptTag` (contournement CSP). |
 | Analyse IA thématique | Découper par thématique réduit le contexte nécessaire et force une analyse exhaustive. |
 | RGAA comme référentiel principal | Le RGAA structure l'audit (106 critères, 13 thématiques). WCAG et EAA sont des références croisées. |
-| Données de référence embarquées | `rgaa-criteres.json`, `wcag-sc.json`, `eaa-references.json`, `aria-patterns.json` dans le Power. |
+| Données de référence embarquées | `rgaa-criteres.json`, `wcag-sc.json`, `eaa-references.json`, `aria-patterns.json`, `mapping-rgaa-wcag-eaa.json` dans le Power. |
 
 ## Structure du Power
 
 ```
 a11y-audit-assistant/
 ├── POWER.md
-├── mcp.json
 ├── steering/
 │   └── a11y-auditor.md
 ├── references/
@@ -105,6 +104,8 @@ a11y-audit-assistant/
 │   ├── wcag-sc.json
 │   ├── aria-patterns.json
 │   ├── eaa-references.json
+│   ├── mapping-rgaa-wcag-eaa.json
+│   ├── rapport-template.md
 │   ├── criteres-revue-manuelle.md
 │   └── rgaa4.1.2.modele-de-grille-d-audit.ods
 └── scripts/

@@ -42,8 +42,6 @@ function checkNodeFetch() {
 
 function checkPlaywright() {
   const paths = [
-    // Le mcp.json du skill lui-même
-    join(ROOT, 'mcp.json'),
     // Kiro project-level config
     join(ROOT, '..', '.kiro', 'settings', 'mcp.json'),
     // Kiro user-level config

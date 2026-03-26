@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Skill Kiro d'audit d'accessibilité web à agent unique (`a11y-auditor`). L'agent exécute séquentiellement toutes les phases de l'audit : vérification des prérequis, scan technique (axe-core injecté via Playwright MCP `browser_evaluate` + tests dynamiques navigateur + analyse statique, 8 sous-modules), mapping déterministe (WCAG → RGAA), raisonnement sémantique IA sur les critères non automatisables, génération du rapport Markdown et génération du JSON d'instructions pour la grille Excel.
+Skill Kiro d'audit d'accessibilité web à agent unique (`a11y-auditor`). L'agent exécute séquentiellement 5 phases : vérification des prérequis, scan technique (axe-core injecté via Playwright MCP `browser_evaluate` + tests dynamiques navigateur + analyse statique), analyse IA thématique RGAA (mapping déterministe WCAG → RGAA + raisonnement sémantique sur les critères non automatisables), fusion et cohérence, puis génération du rapport Markdown et de la grille Excel.
 
 Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assistant/scripts/generate-xlsx.mjs`), la mise à jour des référentiels (`a11y-audit-assistant/scripts/update-references.mjs` + `a11y-audit-assistant/scripts/references-config.json`), Playwright MCP (serveur MCP unique) pour toute l'interaction navigateur (injection axe-core, arbre d'accessibilité, screenshots, tests dynamiques). Référentiels : RGAA, WCAG, EAA, WAI-ARIA APG.
 
@@ -10,12 +10,11 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 
 ## Glossaire
 
-- **Agent_Auditor** : Agent unique (`a11y-auditor`) exécutant séquentiellement les 7 phases de l'audit. Les phases internes sont : prérequis (1), scan (2), mapping (3), révision sémantique (4), agrégation (5), rapport MD (6), grille Excel (7).
+- **Agent_Auditor** : Agent unique (`a11y-auditor`) exécutant séquentiellement les 5 phases de l'audit. Les phases internes sont : prérequis (1), scan technique (2), analyse IA thématique RGAA (3, inclut mapping déterministe + révision sémantique), fusion et cohérence (4), rapport MD + grille Excel (5).
 - **Phase_Scan** : Phase 2 de l'agent — collecte des données brutes d'accessibilité via axe-core injecté par `browser_evaluate`, Playwright MCP (`browser_snapshot`, `browser_take_screenshot`, `browser_press_key`, `browser_resize`, `browser_evaluate`, `browser_hover`) et analyse statique HTML/CSS. 8 sous-modules. Produit des données structurées en mémoire.
-- **Phase_Mapping** : Phase 3 de l'agent — transformation déterministe des résultats bruts en Non_Conformités classifiées (mapping WCAG → RGAA, sévérité, enrichissement EAA, corrections, easy wins). Produit le format intermédiaire normalisé en mémoire.
-- **Phase_Revision_Semantique** : Phase 4 de l'agent — enrichissement du format intermédiaire par un raisonnement sémantique IA sur les critères non automatisables. Chaque NC marquée source="analyse-ia" avec niveau de confiance.
-- **Phase_Rapport_MD** : Phase 6 de l'agent — production du rapport Markdown conforme au modèle officiel RGAA (DINUM, licence ouverte 2.0).
-- **Phase_Grille_Excel** : Phase 7 de l'agent — production des instructions de remplissage de la grille d'audit RGAA (`grille-instructions.json`) puis appel au script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs`.
+- **Phase_Analyse_IA** : Phase 3 de l'agent — parcourt les 13 thématiques RGAA critère par critère. Combine le mapping déterministe WCAG → RGAA (sévérité, enrichissement EAA, corrections) et le raisonnement sémantique IA sur les critères non automatisables. Chaque NC issue du raisonnement IA est marquée source="analyse-ia" avec niveau de confiance.
+- **Phase_Fusion** : Phase 4 de l'agent — fusionne les résultats axe-core (phase 2) et l'analyse IA (phase 3), résout les conflits, vérifie que les 106 critères ont un statut, recalcule les statistiques.
+- **Phase_Rapports** : Phase 5 de l'agent — production du rapport Markdown conforme au modèle officiel RGAA (DINUM, licence ouverte 2.0) et production du JSON d'instructions (`grille-instructions.json`) puis appel au script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs`.
 - **Non_Conformité (NC)** : Écart constaté entre le contenu audité et les critères d'un référentiel d'accessibilité. Classée en trois niveaux de Sévérité : bloquante, majeure, mineure.
 - **RGAA** : Référentiel Général d'Amélioration de l'Accessibilité, référentiel français d'accessibilité web (dernière version en vigueur).
 - **WCAG** : Web Content Accessibility Guidelines, norme internationale d'accessibilité web publiée par le W3C (dernière version en vigueur).
@@ -26,7 +25,7 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 - **Arbre_Accessibilité** : Représentation du DOM utilisée par les technologies d'assistance, exposée par le navigateur. Extraite via Playwright MCP `browser_snapshot` (mode URL uniquement). Les tests dynamiques (navigation clavier, reflow, zoom, états interactifs, contrôles vidéo) sont également réalisés via les outils Playwright MCP (`browser_press_key`, `browser_resize`, `browser_evaluate`, `browser_hover`, `browser_take_screenshot`).
 - **Page_Auditée** : Page web soumise à l'audit, identifiée par un identifiant (ex: p01), un nom (ex: accueil) et une URL.
 - **Sévérité** : Niveau de gravité d'une Non_Conformité : bloquante (empêche l'accès au contenu), majeure (gêne significative), mineure (gêne légère).
-- **Mapping_WCAG_RGAA** : Correspondance entre les critères de succès WCAG et les 106 critères RGAA, intégrée dans le champ `references.wcag` de chaque critère dans `rgaa-criteres.json` (source DINUM). La phase mapping effectue le mapping à la volée en parsant ces références.
+- **Mapping_WCAG_RGAA** : Correspondance entre les critères de succès WCAG et les 106 critères RGAA, intégrée dans le champ `references.wcag` de chaque critère dans `rgaa-criteres.json` (source DINUM). Une table croisée pré-calculée RGAA ↔ WCAG ↔ EAA est disponible dans `mapping-rgaa-wcag-eaa.json`.
 - **Grille_RGAA_Officielle** : Modèle de grille d'audit officiel du RGAA au format ODS (`rgaa4.1.2.modele-de-grille-d-audit.ods`), disponible dans les a11y-audit-assistant/references/ du skill ou téléchargeable depuis le site officiel du RGAA. Structure : une feuille par page auditée (P01 à P20), 7 colonnes (Thématique, Critère, Recommandation, Statut, Dérogation, Modifications, Commentaires), 106 critères répartis en 13 thématiques.
 - **Taux_Conformité** : Pourcentage de critères RGAA conformes par rapport au total des critères applicables (nombre de critères conformes / nombre de critères applicables × 100), tel que défini par le modèle officiel de rapport d'audit RGAA.
 - **Erreur_Critique** : Non-conformité évidente et grave détectée automatiquement (page sans `<html lang>`, sans `<title>`, images sans `alt`, champs sans label, absence de skip link, piège clavier, absence de DOCTYPE), signalée avec la priorité la plus élevée dans les rapports.
@@ -35,16 +34,16 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 
 ### Exigence 1 : Orchestration
 
-**User Story :** En tant qu'auditeur accessibilité, je veux que l'agent unique coordonne les 7 phases séquentielles de l'audit (prérequis, scan, mapping, révision sémantique, agrégation, rapport MD, grille Excel), afin de garantir un flux d'exécution fiable et des résultats cohérents.
+**User Story :** En tant qu'auditeur accessibilité, je veux que l'agent unique coordonne les 5 phases séquentielles de l'audit (prérequis, scan technique, analyse IA thématique RGAA, fusion et cohérence, rapports MD + grille Excel), afin de garantir un flux d'exécution fiable et des résultats cohérents.
 
 #### Critères d'acceptation
 
-1. LORSQU'un audit est initié, l'agent DOIT identifier les pages à analyser et exécuter les phases 2→3→4 séquentiellement sur chaque page.
-2. LORSQUE la phase scan est terminée pour une page, l'agent DOIT enchaîner immédiatement avec la phase mapping (traitement page par page), plutôt que d'attendre la fin du scan de toutes les pages.
-3. LORSQUE la phase mapping est terminée pour une page, l'agent DOIT enchaîner immédiatement avec la phase révision sémantique.
-4. L'agent DOIT exécuter les phases dans l'ordre suivant par page : scan (2), mapping (3), révision sémantique (4). Après traitement de toutes les pages : agrégation (5), rapport MD (6), grille Excel (7).
+1. LORSQU'un audit est initié, l'agent DOIT identifier les pages à analyser et exécuter les phases 2→3 séquentiellement sur chaque page.
+2. LORSQUE la phase scan est terminée pour une page, l'agent DOIT enchaîner immédiatement avec la phase analyse IA thématique (traitement page par page), plutôt que d'attendre la fin du scan de toutes les pages.
+3. LORSQUE la phase analyse IA est terminée pour une page, l'agent DOIT passer à la page suivante.
+4. L'agent DOIT exécuter les phases dans l'ordre suivant par page : scan (2), analyse IA thématique (3). Après traitement de toutes les pages : fusion et cohérence (4), rapports MD + grille Excel (5).
 5. SI la phase scan échoue sur une page, ALORS l'agent DOIT consigner l'erreur, poursuivre l'audit avec les pages restantes et signaler l'échec dans les rapports finaux.
-6. SI la phase mapping échoue, ALORS l'agent DOIT interrompre le flux et signaler l'erreur à l'utilisateur avec le détail de la cause.
+6. SI la phase analyse IA échoue, ALORS l'agent DOIT interrompre le flux et signaler l'erreur à l'utilisateur avec le détail de la cause.
 7. LORSQU'un audit est initié, l'agent DOIT vérifier la version du RGAA, du WCAG et de l'EAA utilisée et inclure ces informations dans les métadonnées des rapports.
 8. SI une version plus récente d'un référentiel est disponible, ALORS l'agent DOIT avertir l'utilisateur avant de poursuivre l'audit.
 9. L'agent DOIT agréger les résultats de toutes les phases et vérifier la cohérence des données avant de générer les rapports.
@@ -56,10 +55,10 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 15. Le mode d'exécution DOIT être détecté automatiquement : URL → mode url, HTML fourni → mode html, fichiers projet → mode project, site_url → mode site.
 16. AVANT de lancer l'audit, l'agent DOIT afficher un résumé de configuration (mode, périmètre, pages) et demander confirmation à l'utilisateur.
 17. SI l'utilisateur ne précise rien (juste "audite cette page"), ALORS l'agent DOIT utiliser les valeurs par défaut et afficher le résumé pour confirmation.
-18. L'agent DOIT afficher la progression de l'audit (ex: "Page 3/10 scannée", "Page 3/10 mappée", "Page 3/10 révisée").
+18. L'agent DOIT afficher la progression de l'audit (ex: "Page 3/10 scannée", "Page 3/10 analysée").
 19. AVANT le rapport complet, l'agent DOIT afficher un résumé rapide (X bloquantes, Y majeures, Z mineures).
 20. AVANT de générer les rapports, l'agent DOIT valider la consolidation : pas de NC en doublon, chaque critère RGAA (1 à 106) a un statut, pas de NC orphelines, statistiques cohérentes.
-21. Les phases rapport MD (6) et grille Excel (7) DOIVENT utiliser exactement les mêmes données en mémoire, sans copie ni transformation intermédiaire.
+21. La phase rapports (5) DOIT utiliser exactement les mêmes données en mémoire pour le MD et l'Excel, sans copie ni transformation intermédiaire.
 22. Le tableau `criteres_rgaa_statuts` DOIT contenir exactement 106 entrées. SI une entrée manque, l'agent DOIT interrompre la génération des rapports et signaler l'erreur.
 
 ### Exigence 2 : Scan technique
@@ -83,9 +82,9 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 13. LORSQUE la page contient des éléments vidéo ou audio, la phase scan DOIT détecter la présence de sous-titres, de transcriptions textuelles et d'audiodescription (RGAA thématique 4 — Multimédia).
 14. LORSQUE la page contient des éléments vidéo, la phase scan DOIT vérifier la présence d'un mécanisme de contrôle (lecture, pause, volume) accessible au clavier.
 15. la phase scan DOIT vérifier que le contenu ne force pas une orientation spécifique (portrait ou paysage) conformément au WCAG 1.3.4.
-16. LORSQU'une page est analysée via URL, la phase scan DOIT capturer un screenshot pleine page (fullPage) au format PNG via Playwright MCP `browser_take_screenshot` pour fournir un contexte visuel � la phase r�vision s�mantique.
+16. LORSQU'une page est analysée via URL, la phase scan DOIT capturer un screenshot pleine page (fullPage) au format PNG via Playwright MCP `browser_take_screenshot` pour fournir un contexte visuel � la phase analyse IA.
 17. LORSQUE la page contient des champs de formulaire (name, email, phone, address, etc.), la phase scan DOIT vérifier la présence et la validité des attributs `autocomplete` via la règle axe-core `autocomplete-valid` (WCAG 1.3.5 / RGAA 11.13).
-18. SI la capture de screenshot échoue (erreur Playwright MCP, limite mémoire), ALORS la phase scan DOIT consigner l'erreur, continuer l'audit sans screenshot et avertir la phase r�vision s�mantique de l'absence de contexte visuel.
+18. SI la capture de screenshot échoue (erreur Playwright MCP, limite mémoire), ALORS la phase scan DOIT consigner l'erreur, continuer l'audit sans screenshot et avertir la phase analyse IA de l'absence de contexte visuel.
 19. SI le téléchargement d'un PDF échoue (timeout, 404, fichier trop volumineux), ALORS la phase scan DOIT consigner l'erreur avec l'URL du PDF et marquer le document comme "non vérifié" dans les résultats.
 20. SI l'analyse d'un média échoue (codec non supporté, stream inaccessible), ALORS la phase scan DOIT consigner l'erreur et marquer le média comme "non vérifié" dans les résultats.
 21. la phase scan DOIT extraire la hiérarchie des headings (h1-h6), les landmarks ARIA et l'outline du document par analyse statique du HTML, de manière équivalente à ce que ferait l'extension HeadingsMap.
@@ -98,41 +97,43 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 
 ### Exigence 3 : Mapping déterministe
 
+
 **User Story :** En tant qu'auditeur accessibilité, je veux un mapper déterministe qui transforme les données brutes de la phase scan en non-conformités classifiées avec mapping WCAG vers RGAA, afin de disposer de résultats exploitables selon le référentiel français.
 
 #### Critères d'acceptation
 
-1. LORSQUE la phase mapping reçoit les résultats JSON de la phase scan, la phase mapping DOIT mapper chaque violation axe-core (exprimée en critères WCAG) vers le ou les critères RGAA correspondants en utilisant les champs `references.wcag` de `rgaa-criteres.json` embarqué dans les a11y-audit-assistant/references/ du skill.
-2. la phase mapping DOIT classer chaque Non_Conformité selon trois niveaux de Sévérité : bloquante (empêche l'accès au contenu ou à une fonctionnalité), majeure (gêne significative dans l'utilisation), mineure (gêne légère sans empêcher l'accès).
-3. la phase mapping DOIT déterminer la Sévérité en fonction de l'impact utilisateur réel, en tenant compte du type d'élément concerné, de sa position dans la page, de son rôle fonctionnel et de l'impact axe-core.
-4. LORSQU'une violation WCAG correspond à un critère couvert par l'EAA, la phase mapping DOIT enrichir la Non_Conformité avec la référence EAA pertinente.
-5. la phase mapping DOIT générer pour chaque Non_Conformité une suggestion de correction sous forme de code avant/après, montrant le code HTML/CSS problématique et le code corrigé.
-6. LORSQUE l'Arbre_Accessibilité révèle un élément interactif sans nom accessible, la phase mapping DOIT créer une Non_Conformité de Sévérité majeure ou bloquante selon le type d'élément.
-7. LORSQUE les résultats de navigation clavier révèlent un piège clavier, la phase mapping DOIT créer une Non_Conformité de Sévérité bloquante.
-8. LORSQUE les résultats de navigation clavier révèlent un ordre de tabulation illogique, la phase mapping DOIT créer une Non_Conformité de Sévérité majeure.
-9. LORSQUE les résultats de navigation clavier révèlent un élément interactif sans indicateur de focus visible, la phase mapping DOIT créer une Non_Conformité de Sévérité majeure.
-10. LORSQUE les résultats de contraste sur états interactifs révèlent un ratio insuffisant, la phase mapping DOIT créer une Non_Conformité avec le ratio mesuré et le ratio attendu.
-11. SI une violation axe-core ne possède pas de correspondance dans le Mapping_WCAG_RGAA, ALORS la phase mapping DOIT conserver la référence WCAG et signaler l'absence de mapping RGAA dans la Non_Conformité.
-12. la phase mapping DOIT produire un ensemble structuré de Non_Conformité contenant pour chacune : le critère RGAA, le critère WCAG correspondant, la référence EAA le cas échéant, l'élément HTML en cause, la Sévérité, la description du problème, et le code avant/après correction.
-13. la phase mapping DOIT produire ses résultats dans un format de données intermédiaire structuré et normalisé, servant de source unique de vérité pour les phases suivantes, afin de garantir la cohérence entre les livrables.
-14. la phase mapping DOIT intégrer les résultats d'analyse des documents PDF (structure, titre, langue) dans le format intermédiaire normalisé et créer des Non_Conformité pour les PDF non accessibles.
-15. la phase mapping DOIT intégrer les résultats d'analyse des médias (sous-titres, transcription, audiodescription, contrôles accessibles) dans le format intermédiaire normalisé et créer des Non_Conformité pour les médias non conformes.
-16. la phase mapping DOIT intégrer les résultats de vérification d'orientation dans le format intermédiaire normalisé.
-17. la phase mapping DOIT marquer les critères non testables automatiquement avec une explication du type de vérification manuelle ou IA requise.
-18. la phase mapping DOIT créer des Non_Conformité pour les attributs `autocomplete` manquants ou incorrects sur les champs de formulaire (RGAA 11.13).
-19. la phase mapping DOIT produire chaque suggestion de correction dans un format uniforme contenant : code_avant, code_apres, explication, critere_rgaa, priorite (haute, moyenne, basse selon les 3 axes de priorisation du modèle officiel RGAA : fonctionnalités essentielles, critères prioritaires bloquant l'accès, facilité de mise en œuvre).
-20. la phase mapping DOIT détecter et signaler les erreurs critiques/évidentes avec la priorité la plus élevée : page sans attribut `<html lang>`, page sans élément `<title>`, images sans attribut `alt`, champs de formulaire sans label associé, absence de skip link / skip navigation, pièges clavier, absence de déclaration de type de document (DOCTYPE). Ces erreurs DOIVENT être marquées comme `erreur_critique: true` dans le format intermédiaire.
-21. la phase mapping DOIT détecter les "easy wins" — corrections simples qui amélioreraient plusieurs critères à la fois (ex: ajout de l'attribut `lang` sur `<html>` corrige plusieurs critères de la thématique 8) — et les signaler dans le format intermédiaire avec la liste des critères impactés.
-22. Le format intermédiaire normalisé produit par la phase mapping DOIT inclure un tableau `criteres_rgaa_statuts` couvrant les 106 critères RGAA, avec un statut défini pour chacun. Chaque NC dans le tableau `non_conformites` DOIT référencer un `page_id` existant dans le tableau `pages`.
+1. LORSQUE la phase analyse IA reçoit les résultats JSON de la phase scan, la phase analyse IA DOIT mapper chaque violation axe-core (exprimée en critères WCAG) vers le ou les critères RGAA correspondants en utilisant les champs `references.wcag` de `rgaa-criteres.json` embarqué dans les a11y-audit-assistant/references/ du skill.
+2. la phase analyse IA DOIT classer chaque Non_Conformité selon trois niveaux de Sévérité : bloquante (empêche l'accès au contenu ou à une fonctionnalité), majeure (gêne significative dans l'utilisation), mineure (gêne légère sans empêcher l'accès).
+3. la phase analyse IA DOIT déterminer la Sévérité en fonction de l'impact utilisateur réel, en tenant compte du type d'élément concerné, de sa position dans la page, de son rôle fonctionnel et de l'impact axe-core.
+4. LORSQU'une violation WCAG correspond à un critère couvert par l'EAA, la phase analyse IA DOIT enrichir la Non_Conformité avec la référence EAA pertinente.
+5. la phase analyse IA DOIT générer pour chaque Non_Conformité une suggestion de correction sous forme de code avant/après, montrant le code HTML/CSS problématique et le code corrigé.
+6. LORSQUE l'Arbre_Accessibilité révèle un élément interactif sans nom accessible, la phase analyse IA DOIT créer une Non_Conformité de Sévérité majeure ou bloquante selon le type d'élément.
+7. LORSQUE les résultats de navigation clavier révèlent un piège clavier, la phase analyse IA DOIT créer une Non_Conformité de Sévérité bloquante.
+8. LORSQUE les résultats de navigation clavier révèlent un ordre de tabulation illogique, la phase analyse IA DOIT créer une Non_Conformité de Sévérité majeure.
+9. LORSQUE les résultats de navigation clavier révèlent un élément interactif sans indicateur de focus visible, la phase analyse IA DOIT créer une Non_Conformité de Sévérité majeure.
+10. LORSQUE les résultats de contraste sur états interactifs révèlent un ratio insuffisant, la phase analyse IA DOIT créer une Non_Conformité avec le ratio mesuré et le ratio attendu.
+11. SI une violation axe-core ne possède pas de correspondance dans le Mapping_WCAG_RGAA, ALORS la phase analyse IA DOIT conserver la référence WCAG et signaler l'absence de mapping RGAA dans la Non_Conformité.
+12. la phase analyse IA DOIT produire un ensemble structuré de Non_Conformité contenant pour chacune : le critère RGAA, le critère WCAG correspondant, la référence EAA le cas échéant, l'élément HTML en cause, la Sévérité, la description du problème, et le code avant/après correction.
+13. la phase analyse IA DOIT produire ses résultats dans un format de données intermédiaire structuré et normalisé, servant de source unique de vérité pour les phases suivantes, afin de garantir la cohérence entre les livrables.
+14. la phase analyse IA DOIT intégrer les résultats d'analyse des documents PDF (structure, titre, langue) dans le format intermédiaire normalisé et créer des Non_Conformité pour les PDF non accessibles.
+15. la phase analyse IA DOIT intégrer les résultats d'analyse des médias (sous-titres, transcription, audiodescription, contrôles accessibles) dans le format intermédiaire normalisé et créer des Non_Conformité pour les médias non conformes.
+16. la phase analyse IA DOIT intégrer les résultats de vérification d'orientation dans le format intermédiaire normalisé.
+17. la phase analyse IA DOIT marquer les critères non testables automatiquement avec une explication du type de vérification manuelle ou IA requise.
+18. la phase analyse IA DOIT créer des Non_Conformité pour les attributs `autocomplete` manquants ou incorrects sur les champs de formulaire (RGAA 11.13).
+19. la phase analyse IA DOIT produire chaque suggestion de correction dans un format uniforme contenant : code_avant, code_apres, explication, critere_rgaa, priorite (haute, moyenne, basse selon les 3 axes de priorisation du modèle officiel RGAA : fonctionnalités essentielles, critères prioritaires bloquant l'accès, facilité de mise en œuvre).
+20. la phase analyse IA DOIT détecter et signaler les erreurs critiques/évidentes avec la priorité la plus élevée : page sans attribut `<html lang>`, page sans élément `<title>`, images sans attribut `alt`, champs de formulaire sans label associé, absence de skip link / skip navigation, pièges clavier, absence de déclaration de type de document (DOCTYPE). Ces erreurs DOIVENT être marquées comme `erreur_critique: true` dans le format intermédiaire.
+21. la phase analyse IA DOIT détecter les "easy wins" — corrections simples qui amélioreraient plusieurs critères à la fois (ex: ajout de l'attribut `lang` sur `<html>` corrige plusieurs critères de la thématique 8) — et les signaler dans le format intermédiaire avec la liste des critères impactés.
+22. Le format intermédiaire normalisé produit par la phase analyse IA DOIT inclure un tableau `criteres_rgaa_statuts` couvrant les 106 critères RGAA, avec un statut défini pour chacun. Chaque NC dans le tableau `non_conformites` DOIT référencer un `page_id` existant dans le tableau `pages`.
 
 ### Exigence 3b : Révision sémantique IA
 
-**User Story :** En tant qu'auditeur accessibilité, je veux un réviseur sémantique IA qui enrichit les résultats de la phase mapping déterministe par un raisonnement sur les critères non automatisables, afin de pousser la couverture au-delà des ~57% d'axe-core.
+
+**User Story :** En tant qu'auditeur accessibilité, je veux que la phase analyse IA intègre un raisonnement sémantique qui enrichit les résultats du mapping déterministe par une évaluation des critères non automatisables, afin de pousser la couverture au-delà des ~57% d'axe-core.
 
 #### Critères d'acceptation
 
-1. LORSQUE la phase mapping a produit le format intermédiaire normalisé pour une page, la phase r�vision s�mantique DOIT recevoir ce format intermédiaire, le screenshot pleine page et le HTML/CSS de la page.
-2. la phase r�vision s�mantique DOIT effectuer un raisonnement sémantique IA sur les critères non automatisables suivants :
+1. LORSQUE le mapping déterministe a produit le format intermédiaire normalisé pour une page, la phase analyse IA DOIT enrichir ce format par un raisonnement sémantique, en s'appuyant sur le screenshot pleine page et le HTML/CSS de la page.
+2. la phase analyse IA DOIT effectuer un raisonnement sémantique IA sur les critères non automatisables suivants :
    - Pertinence des alternatives textuelles des images (RGAA thématique 1)
    - Pertinence du titre du cadre (RGAA thématique 2)
    - Information véhiculée uniquement par la couleur (ex: champ en rouge sans texte d'erreur) (RGAA thématique 3)
@@ -143,20 +144,21 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
    - Pertinence des intitulés de liens (RGAA thématique 6)
    - Cohérence de la navigation entre les pages (RGAA thématique 12)
    - Lisibilité, espacement, zoom 200%, contenu masqué ignoré par les technologies d'assistance (RGAA thématique 10)
-3. LORSQUE la phase r�vision s�mantique détecte une Non_Conformité potentielle, il DOIT la marquer avec la source "analyse-ia" et indiquer un niveau de confiance (élevé, moyen, faible) pour distinguer ces résultats de ceux issus des outils automatisés.
-4. La phase révision sémantique DOIT enrichir le format intermédiaire normalisé avec ses NC supplémentaires.
-5. Le screenshot pleine page DOIT servir de contexte visuel � la phase r�vision s�mantique pour évaluer la mise en page, les couleurs, la lisibilité, le contexte des images et la hiérarchie visuelle.
-6. la phase r�vision s�mantique DOIT évaluer la pertinence des valeurs `autocomplete` sur les champs de formulaire par rapport au contexte du champ (ex: un champ "Prénom" devrait avoir `autocomplete="given-name"`) (RGAA 11.13).
+3. LORSQUE la phase analyse IA détecte une Non_Conformité potentielle, il DOIT la marquer avec la source "analyse-ia" et indiquer un niveau de confiance (élevé, moyen, faible) pour distinguer ces résultats de ceux issus des outils automatisés.
+4. La phase analyse IA DOIT enrichir le format intermédiaire normalisé avec ses NC supplémentaires.
+5. Le screenshot pleine page DOIT servir de contexte visuel � la phase analyse IA pour évaluer la mise en page, les couleurs, la lisibilité, le contexte des images et la hiérarchie visuelle.
+6. la phase analyse IA DOIT évaluer la pertinence des valeurs `autocomplete` sur les champs de formulaire par rapport au contexte du champ (ex: un champ "Prénom" devrait avoir `autocomplete="given-name"`) (RGAA 11.13).
 7. Le seuil de confiance du Semantic Reviewer DOIT être configurable via les options d'audit (`seuil_confiance`, défaut : `"moyen"`). Les NC dont le niveau de confiance est inférieur au seuil configuré DOIVENT être marquées comme nécessitant une validation humaine.
 8. Chaque NC produite par le Semantic Reviewer DOIT inclure un champ `justification` expliquant le raisonnement IA ayant conduit à la détection de la NC.
 
 ### Exigence 4 : Rapport Markdown
 
+
 **User Story :** En tant qu'auditeur accessibilité, je veux un rapport Markdown complet et structuré selon le modèle officiel de rapport d'audit RGAA (DINUM, licence ouverte 2.0), afin de disposer d'un livrable conforme aux standards français avec le détail de chaque non-conformité.
 
 #### Critères d'acceptation
 
-1. la phase rapport MD DOIT produire un rapport structuré conformément au modèle officiel de rapport d'audit RGAA (DINUM, licence ouverte 2.0) :
+1. la phase rapports DOIT produire un rapport structuré conformément au modèle officiel de rapport d'audit RGAA (DINUM, licence ouverte 2.0) :
    - **Introduction > Contexte** : périmètre de l'audit, méthode utilisée, liste des pages auditées, version RGAA, technologies utilisées sur le site, outils d'audit avec versions, environnement de test
    - **Introduction > Accessibilité du site** : niveau d'accessibilité global, Taux_Conformité (pourcentage de critères respectés), vue d'ensemble qualitative, principaux points forts et points faibles
    - **Description des erreurs d'accessibilité** : organisée par les 13 thématiques RGAA (Images, Cadres, Couleurs, Multimédia, Tableaux, Liens, Scripts, Éléments obligatoires, Structuration, Présentation, Formulaires, Navigation, Consultation), chaque thématique avec un texte introductif puis les NC détaillées avec description du problème et recommandation technique
@@ -165,29 +167,30 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
    - **Annexes** : critères couverts automatiquement, critères évalués par le Semantic Reviewer IA, critères nécessitant une revue manuelle, mention que la grille d'audit Excel est annexée
 2. Le rapport DOIT mentionner que la grille d'audit Excel est annexée.
 3. La section Introduction DOIT mentionner explicitement qu'Axe_Core ne couvre qu'environ 57% des critères WCAG de manière automatisée et que les résultats ne constituent pas un audit complet.
-4. la phase rapport MD DOIT produire un tableau récapitulatif des Page_Auditée avec les colonnes : identifiant (ex: p01), nom (ex: accueil), URL, nombre de Non_Conformité par Sévérité (bloquante, majeure, mineure).
-5. la phase rapport MD DOIT calculer et afficher le Taux_Conformité RGAA (nombre de critères conformes / nombre de critères applicables × 100) dans la section Accessibilité du site.
-6. la phase rapport MD DOIT produire le détail de chaque Non_Conformité dans le format uniforme de recommandation (critère RGAA/WCAG, sévérité, problème, code avant/après, explication, priorité selon les 3 axes).
-7. la phase rapport MD DOIT identifier les critères RGAA nécessitant une revue manuelle et les lister dans une section dédiée avec la mention "revue manuelle nécessaire".
-8. LORSQUE la phase scan a échoué sur une ou plusieurs Page_Auditée, la phase rapport MD DOIT mentionner ces échecs dans la section Introduction avec les URLs concernées.
+4. la phase rapports DOIT produire un tableau récapitulatif des Page_Auditée avec les colonnes : identifiant (ex: p01), nom (ex: accueil), URL, nombre de Non_Conformité par Sévérité (bloquante, majeure, mineure).
+5. la phase rapports DOIT calculer et afficher le Taux_Conformité RGAA (nombre de critères conformes / nombre de critères applicables × 100) dans la section Accessibilité du site.
+6. la phase rapports DOIT produire le détail de chaque Non_Conformité dans le format uniforme de recommandation (critère RGAA/WCAG, sévérité, problème, code avant/après, explication, priorité selon les 3 axes).
+7. la phase rapports DOIT identifier les critères RGAA nécessitant une revue manuelle et les lister dans une section dédiée avec la mention "revue manuelle nécessaire".
+8. LORSQUE la phase scan a échoué sur une ou plusieurs Page_Auditée, la phase rapports DOIT mentionner ces échecs dans la section Introduction avec les URLs concernées.
 9. Les rapports par page DOIVENT suivre la même structure que le rapport global mais limités au périmètre de la page concernée.
 10. Les erreurs critiques (Erreur_Critique) DOIVENT être mises en évidence de manière proéminente dans le rapport, dans une sous-section dédiée en début de la section Description des erreurs.
 
 ### Exigence 5 : Grille RGAA Excel
 
+
 **User Story :** En tant qu'auditeur accessibilité, je veux une grille d'audit RGAA au format Excel conforme au modèle officiel ODS, afin de disposer d'un livrable exploitable pour la déclaration de conformité.
 
 #### Critères d'acceptation
 
-1. la phase grille Excel DOIT reproduire la structure de la Grille_RGAA_Officielle au format .xlsx, avec une feuille par page auditée (P01, P02, etc.) et 7 colonnes : Thématique, Critère, Recommandation, Statut (C/NC/NA/NT), Dérogation (N/O), Modifications à apporter, Commentaires.
-2. LORSQUE les données analysées sont reçues, la phase grille Excel DOIT remplir la grille avec le statut de chaque critère RGAA : C (conforme), NC (non conforme), NA (non applicable), NT (non testé).
-3. LORSQU'un critère RGAA est non conforme, la phase grille Excel DOIT inclure les observations associées dans la colonne "Modifications à apporter" décrivant la Non_Conformité détectée.
-4. Les critères et les commentaires présents dans la Grille_RGAA_Excel DOIVENT être identiques à ceux du rapport Markdown produit par la phase rapport MD.
-5. LORSQU'un critère RGAA n'a pas pu être testé automatiquement, la phase grille Excel DOIT indiquer le statut NT (non testé) pour ce critère.
+1. la phase rapports DOIT reproduire la structure de la Grille_RGAA_Officielle au format .xlsx, avec une feuille par page auditée (P01, P02, etc.) et 7 colonnes : Thématique, Critère, Recommandation, Statut (C/NC/NA/NT), Dérogation (N/O), Modifications à apporter, Commentaires.
+2. LORSQUE les données analysées sont reçues, la phase rapports DOIT remplir la grille avec le statut de chaque critère RGAA : C (conforme), NC (non conforme), NA (non applicable), NT (non testé).
+3. LORSQU'un critère RGAA est non conforme, la phase rapports DOIT inclure les observations associées dans la colonne "Modifications à apporter" décrivant la Non_Conformité détectée.
+4. Les critères et les commentaires présents dans la Grille_RGAA_Excel DOIVENT être identiques à ceux du rapport Markdown produit par la phase rapports.
+5. LORSQU'un critère RGAA n'a pas pu être testé automatiquement, la phase rapports DOIT indiquer le statut NT (non testé) pour ce critère.
 6. La Grille_RGAA_Excel DOIT être générée au format .xlsx.
 7. SI la Grille_RGAA_Officielle (fichier ODS `rgaa4.1.2.modele-de-grille-d-audit.ods`) est fournie dans les a11y-audit-assistant/references/ du skill, ALORS le script Node.js PEUT l'utiliser comme référence pour le formatage.
-8. SI la Grille_RGAA_Officielle n'est pas disponible dans les a11y-audit-assistant/references/, ALORS la phase grille Excel DOIT générer la grille à partir de la structure des 106 critères RGAA embarquée dans le système.
-9. la phase grille Excel DOIT produire un fichier JSON d'instructions de remplissage de la grille (`grille-instructions.json`), qui sera consommé par le script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs` pour générer le fichier .xlsx final.
+8. SI la Grille_RGAA_Officielle n'est pas disponible dans les a11y-audit-assistant/references/, ALORS la phase rapports DOIT générer la grille à partir de la structure des 106 critères RGAA embarquée dans le système.
+9. la phase rapports DOIT produire un fichier JSON d'instructions de remplissage de la grille (`grille-instructions.json`), qui sera consommé par le script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs` pour générer le fichier .xlsx final.
 10. L'en-tête de chaque feuille DOIT contenir "RGAA {version} – GRILLE D'ÉVALUATION" suivi du nom et de l'URL de la page auditée.
 
 ### Exigence 6 : Limitations et revue manuelle
@@ -201,7 +204,7 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 3. Le rapport Markdown DOIT mentionner explicitement qu'Axe_Core ne couvre qu'environ 57% des critères WCAG de manière automatisée.
 4. LORSQUE l'Arbre_Accessibilité est utilisé pour détecter des problèmes supplémentaires (rôles ARIA mal implémentés, noms accessibles manquants), le rapport Markdown DOIT mentionner cette source de données et sa valeur ajoutée par rapport à l'analyse du DOM seul.
 5. Le rapport Markdown DOIT distinguer clairement les Non_Conformité détectées automatiquement, celles issues du raisonnement IA (avec leur niveau de confiance), et celles nécessitant une validation humaine.
-6. LORSQU'un critère RGAA ne peut être évalué ni automatiquement ni par analyse de l'Arbre_Accessibilité ni par la phase r�vision s�mantique, la phase mapping DOIT le marquer comme "non testable automatiquement" avec une explication du type de vérification manuelle requise.
+6. LORSQU'un critère RGAA ne peut être évalué ni automatiquement ni par analyse de l'Arbre_Accessibilité ni par la phase analyse IA, la phase analyse IA DOIT le marquer comme "non testable automatiquement" avec une explication du type de vérification manuelle requise.
 
 ### Exigence 7 : Analyse statique HTML/CSS
 
@@ -212,10 +215,10 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 1. LORSQUE l'utilisateur fournit du code HTML et/ou CSS directement (mode sans URL), la phase scan DOIT charger le code via `browser_navigate` vers une data URL, puis injecter axe-core via `browser_evaluate` et exécuter `axe.run()` pour l'analyse.
 2. LORSQUE le mode sans URL est utilisé, la phase scan DOIT utiliser `browser_navigate` vers une data URL puis injection axe-core via `browser_evaluate` pour l'analyse axe-core sur le HTML fourni.
 3. LORSQUE le mode sans URL est utilisé, la phase scan DOIT valider les attributs ARIA via les règles ARIA d'axe-core injecté. L'extraction de l'Arbre_Accessibilité (Playwright MCP `browser_snapshot`) n'est pas disponible en mode sans URL.
-4. LORSQUE l'analyse est effectuée en mode sans URL, la phase rapport MD DOIT mentionner dans la section Introduction que l'analyse a été réalisée sur du code fourni directement et indiquer les limitations associées (absence de JavaScript dynamique, absence de ressources externes).
+4. LORSQUE l'analyse est effectuée en mode sans URL, la phase rapports DOIT mentionner dans la section Introduction que l'analyse a été réalisée sur du code fourni directement et indiquer les limitations associées (absence de JavaScript dynamique, absence de ressources externes).
 5. SI le code HTML fourni ne contient pas de balise DOCTYPE ou de structure HTML valide, ALORS la phase scan DOIT avertir l'utilisateur et tenter l'analyse sur le code tel que fourni.
 6. LORSQUE le code HTML fourni référence des ressources externes (feuilles CSS, scripts JS, images), la phase scan DOIT tenter de les résoudre si elles sont accessibles, et consigner dans les résultats les ressources non résolues avec leur impact potentiel sur l'analyse.
-7. LORSQUE des ressources externes ne peuvent pas être résolues en mode sans URL, la phase rapport MD DOIT lister ces ressources manquantes dans la section Introduction et indiquer les critères d'accessibilité potentiellement affectés (contrastes, images, etc.).
+7. LORSQUE des ressources externes ne peuvent pas être résolues en mode sans URL, la phase rapports DOIT lister ces ressources manquantes dans la section Introduction et indiquer les critères d'accessibilité potentiellement affectés (contrastes, images, etc.).
 
 ### Exigence 8 : Données de référence
 
@@ -223,12 +226,12 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 
 #### Critères d'acceptation
 
-1. Le fichier `rgaa-criteres.json` (généré par `npm run update-refs`) DOIT contenir les références WCAG par critère RGAA dans le champ `references.wcag`, servant de base au mapping WCAG → RGAA effectué par la phase mapping.
+1. Le fichier `rgaa-criteres.json` (généré par `npm run update-refs`) DOIT contenir les références WCAG par critère RGAA dans le champ `references.wcag`, servant de base au mapping WCAG → RGAA effectué par la phase analyse IA.
 2. Le mapping WCAG → RGAA DOIT couvrir la correspondance entre chaque critère de succès WCAG (niveaux A et AA) et les 106 critères RGAA, telle que définie par la DINUM dans les données RGAA.
 3. La Grille_RGAA_Officielle au format ODS (`rgaa4.1.2.modele-de-grille-d-audit.ods`) DOIT être disponible dans le répertoire a11y-audit-assistant/references/ du skill ou être téléchargeable depuis le site officiel du RGAA.
 4. Les référentiels RGAA, WCAG et EAA DOIVENT être embarqués dans le répertoire a11y-audit-assistant/references/ du skill avec leur numéro de version.
 5. LORSQU'un référentiel embarqué est mis à jour, le numéro de version DOIT être mis à jour dans les métadonnées du skill.
-6. SI le Mapping_WCAG_RGAA ne couvre pas un critère WCAG détecté par Axe_Core, ALORS la phase mapping DOIT signaler le critère manquant dans les résultats et dans le rapport Markdown.
+6. SI le Mapping_WCAG_RGAA ne couvre pas un critère WCAG détecté par Axe_Core, ALORS la phase analyse IA DOIT signaler le critère manquant dans les résultats et dans le rapport Markdown.
 7. Le fichier de configuration des références (`a11y-audit-assistant/scripts/references-config.json`) DOIT inclure pour chaque référentiel les champs `source`, `version`, `repository` et `url` pointant vers la source officielle, afin de permettre la vérification des mises à jour. Les liens EAA DOIVENT utiliser les liens ELI stables : `https://eur-lex.europa.eu/eli/dir/2019/882/oj` (URI ELI stable).
 8. Le skill DOIT fournir un script Node.js (`a11y-audit-assistant/scripts/update-references.mjs`) permettant de télécharger et mettre à jour les fichiers de référence depuis les dépôts GitHub officiels. Le script est exécutable via `npm run update-refs`.
 9. LORSQUE le script de mise à jour est exécuté, il DOIT télécharger les données depuis les sources configurées dans `a11y-audit-assistant/scripts/references-config.json` et écrire les fichiers JSON dans `a11y-audit-assistant/references/` avec un header `meta` unifié (source, version, repository, url, generatedAt).
@@ -262,7 +265,7 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 3. Le serveur MCP unique est Playwright MCP, qui fournit tous les outils d'interaction navigateur. axe-core est injecté dynamiquement via `browser_evaluate` (chargement CDN puis `axe.run()`).
 4. Les dépendances Node.js DOIVENT être gérées via npm avec un fichier `package.json` à la racine du projet.
 5. La mise à jour des fichiers de référence DOIT utiliser le script Node.js `a11y-audit-assistant/scripts/update-references.mjs` avec la configuration externalisée dans `a11y-audit-assistant/scripts/references-config.json`. Le script est exécutable via `npm run update-refs`.
-6. Le skill DOIT inclure un script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs` qui consomme le fichier JSON d'instructions produit par la phase grille Excel et génère le fichier .xlsx final via exceljs. Le script valide la structure du JSON (106 critères, statuts valides) avant génération.
+6. Le skill DOIT inclure un script Node.js `a11y-audit-assistant/scripts/generate-xlsx.mjs` qui consomme le fichier JSON d'instructions produit par la phase rapports et génère le fichier .xlsx final via exceljs. Le script valide la structure du JSON (106 critères, statuts valides) avant génération.
 7. Le skill DOIT inclure un script Node.js `a11y-audit-assistant/scripts/check-deps.mjs` (exécutable via `npm run check-deps`) permettant aux utilisateurs de vérifier tous les prérequis du skill avant le premier audit. Le script DOIT vérifier : Node.js, MCP Playwright, fichiers de référence JSON, exceljs, template ODS, eaa-references.json, espace disque. Le script DOIT afficher un résumé clair avec le statut de chaque composant (✓/✗/⚠).
 8. Le `package.json` DOIT inclure les scripts npm suivants : `update-refs` (mise à jour des références), `check-deps` (vérification des prérequis).
 
@@ -326,8 +329,8 @@ Outillage : Node.js pour la génération Excel (`exceljs` via `a11y-audit-assist
 1. SI le serveur MCP Playwright se déconnecte en cours d'audit, ALORS l'agent DOIT tenter une reconnexion. SI la reconnexion échoue, l'agent DOIT consigner l'erreur et arrêter l'audit proprement.
 2. AVANT de commencer l'audit, l'agent DOIT vérifier l'espace disque disponible pour le workspace d'audit. SI l'espace disponible est inférieur à 100 Mo, l'agent DOIT avertir l'utilisateur.
 3. SI le script `generate-xlsx.mjs` échoue, ALORS l'audit DOIT tout de même produire le rapport Markdown et le fichier JSON d'instructions (`grille-instructions.json`), et signaler l'échec de la génération Excel à l'utilisateur.
-4. SI la phase révision sémantique échoue (timeout LLM, erreur de parsing), ALORS l'agent DOIT livrer le format intermédiaire de la phase mapping sans enrichissement IA, en avertissant l'utilisateur que les critères non automatisables n'ont pas été évalués.
-5. SI le fichier `a11y-audit-assistant/references/eaa-references.json` est absent, ALORS la phase mapping DOIT omettre l'enrichissement EAA et avertir l'utilisateur. L'audit continue normalement.
+4. SI la phase analyse IA échoue (timeout LLM, erreur de parsing), ALORS l'agent DOIT livrer le format intermédiaire de la phase analyse IA sans enrichissement IA, en avertissant l'utilisateur que les critères non automatisables n'ont pas été évalués.
+5. SI le fichier `a11y-audit-assistant/references/eaa-references.json` est absent, ALORS la phase analyse IA DOIT omettre l'enrichissement EAA et avertir l'utilisateur. L'audit continue normalement.
 6. SI l'espace disque devient insuffisant en cours d'audit, ALORS l'agent DOIT arrêter proprement et livrer les résultats déjà produits (pages déjà analysées).
 7. SI axe-core retourne 0 violations sur une page, ALORS l'agent DOIT avertir l'utilisateur (résultat inhabituel pouvant indiquer un problème de chargement ou une page vide).
 8. AVANT d'appeler le script `generate-xlsx.mjs`, l'agent DOIT valider le JSON `grille-instructions.json` (structure, 106 critères, statuts valides) pour détecter les erreurs avant la génération Excel.

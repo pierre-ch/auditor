@@ -22,7 +22,7 @@
   - [x] 1.4 Phase 4 — Fusion et cohérence
     - Fusionner axe-core + analyse IA, résoudre conflits
     - Vérifier 106 critères complets, pas de doublons/orphelines
-    - Enrichir avec WCAG (`references/wcag-sc.json`) et EAA (`references/eaa-references.json`)
+    - Enrichir avec WCAG + EAA (via `references/mapping-rgaa-wcag-eaa.json`)
     - _Exigences : 1.20–1.22_
   - [x] 1.5 Phase 5 — Rapport MD + Grille Excel
     - Rapport conforme modèle officiel RGAA (DINUM)
@@ -36,9 +36,9 @@
   - [x] 2.3 `.kiro/steering/resilience-mcp.md` — ajouter fallback CSP (`page.addScriptTag`)
   - [x] 2.4 `.kiro/steering/audit-execution.md` — aligner sur le nouveau flux
 
-- [x] 3. Mettre à jour le POWER.md et mcp.json
+- [x] 3. Mettre à jour le POWER.md
   - [x] 3.1 POWER.md — décrire le nouveau flux 5 phases
-  - [x] 3.2 mcp.json — vérifier la config Playwright
+  - [x] 3.2 mcp.json — supprimé du skill (doublon de `.kiro/settings/mcp.json`)
 
 - [x] 4. Mettre à jour les scripts
   - [x] 4.1 `scripts/check-deps.mjs` — vérifier les chemins relatifs depuis le Power

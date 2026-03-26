@@ -16,8 +16,9 @@ Assistant d'audit d'accessibilité web. Audit automatisé selon RGAA 4.1.2 (réf
 ## Pour commencer
 
 1. Lire les **instructions complètes** : `steering/a11y-auditor.md`
-2. Vérifier les prérequis : `npm run check-deps`
-3. Si les références JSON sont manquantes : `npm run update-refs`
+2. Lire les **steering Kiro** : `.kiro/steering/` (data-formats.md, resilience-mcp.md, quality-first.md, a11y-conventions.md, audit-execution.md)
+3. Vérifier les prérequis : `npm run check-deps`
+4. Si les références JSON sont manquantes : `npm run update-refs`
 
 ## Livrables produits
 
@@ -29,11 +30,8 @@ Assistant d'audit d'accessibilité web. Audit automatisé selon RGAA 4.1.2 (réf
 ```
 a11y-audit-assistant/
 ├── POWER.md                          ← Ce fichier (point d'entrée)
-├── mcp.json                          ← Config Playwright MCP
 ├── steering/
-│   ├── a11y-auditor.md               ← Instructions complètes (5 phases)
-│   ├── resilience-mcp.md             ← Stratégies retry/fallback Playwright
-│   └── data-formats.md               ← Schémas JSON d'entrée/sortie
+│   └── a11y-auditor.md               ← Instructions complètes (5 phases)
 ├── references/
 │   ├── rgaa-criteres.json            ← 13 thématiques, 106 critères
 │   ├── rgaa-glossaire.json           ← Glossaire officiel RGAA
@@ -65,6 +63,6 @@ a11y-audit-assistant/
 | Composant | Type | Vérification |
 |---|---|---|
 | Node.js ≥ 18 | Bloquant | `node --version` |
-| Playwright MCP | Bloquant | Configuré dans `mcp.json` |
+| Playwright MCP | Bloquant | Configuré dans `.kiro/settings/mcp.json` |
 | Références JSON | Bloquant | `npm run update-refs` |
 | exceljs | Bloquant | `npm install exceljs` |
